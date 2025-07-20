@@ -1,0 +1,41 @@
+from PIL import Image, ImageDraw, ImageFont
+
+# Create a blank image
+width, height = 800, 600
+img = Image.new("RGB", (width, height), color=(0, 150, 150))
+draw = ImageDraw.Draw(img)
+
+# Load a default font (you can use a TTF font for better style)
+try:
+    font = ImageFont.truetype("arial.ttf", 40)
+except:
+    font = ImageFont.load_default()
+
+# Text for the two sections
+left_text = "Normal job\n9-5 hours :"
+right_text = "Watch cryptos\n24/7:"
+
+# Draw text (left and right)
+draw.text((80, 50), left_text, font=font, fill="white", align="center")
+draw.text((480, 50), right_text, font=font, fill="white", align="center")
+
+# Draw the two faces (basic cartoon style using ellipses and arcs)
+# Left face (tired)
+draw.ellipse((100, 200, 300, 500), fill=(0, 100, 100), outline="black", width=3)
+draw.ellipse((150, 300, 220, 360), fill="white")  # Left eye
+draw.ellipse((180, 310, 200, 330), fill="black")  # Pupil
+draw.ellipse((220, 300, 290, 360), fill="white")  # Right eye
+draw.ellipse((250, 310, 270, 330), fill="black")  # Pupil
+draw.arc((150, 400, 250, 480), start=0, end=180, fill=(0, 0, 255), width=5)  # Sad mouth
+
+# Right face (crypto eyes)
+draw.ellipse((500, 200, 700, 500), fill=(0, 100, 100), outline="black", width=3)
+draw.ellipse((550, 300, 620, 360), fill=(255, 150, 150))  # Left red eye
+draw.ellipse((580, 310, 600, 330), fill="black")  # Pupil
+draw.ellipse((620, 300, 690, 360), fill=(255, 150, 150))  # Right red eye
+draw.ellipse((650, 310, 670, 330), fill="black")  # Pupil
+draw.arc((550, 400, 650, 480), start=180, end=360, fill=(0, 0, 255), width=5)  # Smiling mouth
+
+# Save or display
+img.show()
+img.save("crypto_meme.png")
